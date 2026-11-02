@@ -1,0 +1,48 @@
+{% if form.vars.submitted and not form.vars.valid %}
+    <div class="modal fade" id="validationErrorModal" tabindex="-1" aria-labelledby="validationErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-danger">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="validationErrorModalLabel">Validation Error</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">Please correct the following errors:</p>
+                    <ul class="mb-0">
+                        {% for error in form.vars.errors %}
+                            <li>{{ error.message }}</li>
+                        {% endfor %}
+                        {% for child in form %}
+                            {% for error in child.vars.errors %}
+                                <li>
+                                    <strong>{{ child.vars.label|default(child.vars.name|replace({'_': ' '})|capitalize) }}:</strong>
+                                    {{ error.message }}
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            function showValidationErrorModal() {
+                const modalEl = document.getElementById('validationErrorModal');
+                if (modalEl && window.bootstrap) {
+                    bootstrap.Modal.getOrCreateInstance(modalEl).show();
+                }
+            }
+            if (window.bootstrap) {
+                showValidationErrorModal();
+            } else {
+                document.addEventListener('DOMContentLoaded', showValidationErrorModal);
+                window.addEventListener('load', showValidationErrorModal);
+            }
+        })();
+    </script>
+{% endif %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Measurement index{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">Measurement index</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="text-nowrap">
+                <tr>
+                    <th class="d-none d-md-table-cell">Id</th>
+                    <th>Temperature</th>
+                    <th class="d-none d-md-table-cell">Pressure</th>
+                    <th>Date</th>
+                    <th class="d-none d-md-table-cell">Wind_speed</th>
+                    <th class="d-none d-md-table-cell">Wind_direction</th>
+                    <th class="d-none d-md-table-cell">Rain</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for measurement in measurements %}
+                <tr>
+                    <td class="d-none d-md-table-cell">{{ measurement.id }}</td>
+                    <td>{{ measurement.temperature }}</td>
+                    <td class="d-none d-md-table-cell">{{ measurement.pressure }}</td>
+                    <td class="text-nowrap">{{ measurement.date ? measurement.date|date('Y-m-d') : '' }}</td>
+                    <td class="d-none d-md-table-cell">{{ measurement.windSpeed }}</td>
+                    <td class="d-none d-md-table-cell">{{ measurement.windDirection }}</td>
+                    <td class="d-none d-md-table-cell">{{ measurement.rain }}</td>
+                    <td class="text-nowrap">
+                        <div class="d-inline-flex gap-1">
+                            <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                            <a class="btn btn-sm btn-outline-primary" href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-2 mb-4">
+        <a class="btn btn-primary" href="{{ path('app_measurement_new') }}">Create new</a>
+    </div>
+{% endblock %}

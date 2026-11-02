@@ -1,0 +1,93 @@
+App\Entity\Location:
+    properties:
+        name:
+            - NotBlank:
+                message: 'Location name cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Location name must be at least {{ limit }} characters long.'
+                maxMessage: 'Location name cannot be longer than {{ limit }} characters.'
+                groups: ['Default', 'create', 'edit']
+        country:
+            - NotBlank:
+                message: 'Country cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Country:
+                message: 'Please select a valid country.'
+                groups: ['Default', 'create', 'edit']
+        latitude:
+            - NotBlank:
+                message: 'Latitude cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: -90
+                max: 90
+                notInRangeMessage: 'Latitude must be between {{ min }} and {{ max }}.'
+                groups: ['Default', 'create', 'edit']
+        longitude:
+            - NotBlank:
+                message: 'Longitude cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: -180
+                max: 180
+                notInRangeMessage: 'Longitude must be between {{ min }} and {{ max }}.'
+                groups: ['Default', 'create', 'edit']
+
+App\Entity\Measurement:
+    properties:
+        location:
+            - NotBlank:
+                message: 'Please select a location.'
+                groups: ['Default', 'create', 'edit']
+        temperature:
+            - NotBlank:
+                message: 'Temperature cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: -100
+                max: 100
+                notInRangeMessage: 'Temperature must be between {{ min }} and {{ max }} °C.'
+                groups: ['Default', 'create', 'edit']
+        pressure:
+            - NotBlank:
+                message: 'Pressure cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: 800
+                max: 1100
+                notInRangeMessage: 'Pressure must be between {{ min }} and {{ max }} hPa.'
+                groups: ['Default', 'create', 'edit']
+        date:
+            - NotBlank:
+                message: 'Date cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+        wind_speed:
+            - NotBlank:
+                message: 'Wind speed cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: 0
+                max: 500
+                notInRangeMessage: 'Wind speed must be between {{ min }} and {{ max }} km/h.'
+                groups: ['Default', 'create', 'edit']
+        wind_direction:
+            - NotBlank:
+                message: 'Wind direction cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: 0
+                max: 360
+                notInRangeMessage: 'Wind direction must be between {{ min }} and {{ max }} degrees.'
+                groups: ['Default', 'create', 'edit']
+        rain:
+            - NotBlank:
+                message: 'Rain cannot be blank.'
+                groups: ['Default', 'create', 'edit']
+            - Range:
+                min: 0
+                max: 1000
+                notInRangeMessage: 'Rain must be between {{ min }} and {{ max }} mm/h.'
+                groups: ['Default', 'create', 'edit']

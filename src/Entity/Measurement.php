@@ -58,7 +58,7 @@ class Measurement
         return $this->temperature;
     }
 
-    public function setTemperature(string $temperature): static
+    public function setTemperature(?string $temperature): static
     {
         $this->temperature = $temperature;
 
@@ -70,7 +70,7 @@ class Measurement
         return $this->pressure;
     }
 
-    public function setPressure(string $pressure): static
+    public function setPressure(?string $pressure): static
     {
         $this->pressure = $pressure;
 
@@ -82,7 +82,7 @@ class Measurement
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): static
+    public function setDate(?\DateTime $date): static
     {
         $this->date = $date;
 
@@ -94,7 +94,7 @@ class Measurement
         return $this->wind_speed;
     }
 
-    public function setWindSpeed(string $wind_speed): static
+    public function setWindSpeed(?string $wind_speed): static
     {
         $this->wind_speed = $wind_speed;
 
@@ -106,7 +106,7 @@ class Measurement
         return $this->wind_direction;
     }
 
-    public function setWindDirection(string $wind_direction): static
+    public function setWindDirection(?string $wind_direction): static
     {
         $this->wind_direction = $wind_direction;
 
@@ -118,7 +118,7 @@ class Measurement
         return $this->rain;
     }
 
-    public function setRain(string $rain): static
+    public function setRain(?string $rain): static
     {
         $this->rain = $rain;
 
