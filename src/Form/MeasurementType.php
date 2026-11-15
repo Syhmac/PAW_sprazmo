@@ -25,7 +25,6 @@ class MeasurementType extends AbstractType
                 ],
             ])
             ->add('pressure', NumberType::class, [
-                'scale' => 0,
                 'invalid_message' => 'Pressure must be a valid number.',
                 'attr' => [
                     'min' => 800,

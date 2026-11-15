@@ -31,8 +31,12 @@
                     <td class="d-none d-md-table-cell">{{ measurement.rain }}</td>
                     <td class="text-nowrap">
                         <div class="d-inline-flex gap-1">
-                            <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
-                            <a class="btn btn-sm btn-outline-primary" href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                            {% if is_granted('ROLE_MEASUREMENT_SHOW') %}
+                                <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                            {% endif %}
+                            {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
+                                <a class="btn btn-sm btn-outline-primary" href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                            {% endif %}
                         </div>
                     </td>
                 </tr>
@@ -45,7 +49,9 @@
         </table>
     </div>
 
-    <div class="mt-2 mb-4">
-        <a class="btn btn-primary" href="{{ path('app_measurement_new') }}">Create new</a>
-    </div>
+    {% if is_granted('ROLE_MEASUREMENT_NEW') %}
+        <div class="mt-2 mb-4">
+            <a class="btn btn-primary" href="{{ path('app_measurement_new') }}">Create new</a>
+        </div>
+    {% endif %}
 {% endblock %}

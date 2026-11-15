@@ -21,7 +21,7 @@ class Measurement
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $temperature = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 0)]
+    #[ORM\Column(type: Types::INTEGER, precision: 4)]
     private ?string $pressure = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
