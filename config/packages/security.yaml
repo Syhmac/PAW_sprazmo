@@ -42,9 +42,9 @@ security:
             - ROLE_MEASUREMENT_DELETE
         ROLE_EDITOR:
             - ROLE_USER
-            - ROLE_LOCATION_ADD
+            - ROLE_LOCATION_NEW
             - ROLE_LOCATION_EDIT
-            - ROLE_MEASUREMENT_ADD
+            - ROLE_MEASUREMENT_NEW
             - ROLE_MEASUREMENT_EDIT
         ROLE_USER:
             - ROLE_LOCATION_INDEX
